@@ -3,6 +3,7 @@ using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1OrganizerUI.Scripts.Pooling;
 using Exerussus.EasyEcsModules.ViewCreator.MonoBehaviours;
 using Leopotam.EcsLite;
+using UnityEngine;
 
 namespace Exerussus.EasyEcsModules.ViewCreator.System
 {
@@ -27,7 +28,6 @@ namespace Exerussus.EasyEcsModules.ViewCreator.System
             var newEntity = World.NewEntity();
             var packedEntity = World.PackEntity(newEntity);
             Pooler.AssetLoadingMark.Add(newEntity);
-            
             _assetPooler.GetAndExecute(data.AssetName, data.AddressablePath, data.Position, api =>
             {
                 if (packedEntity.Unpack(World, out var entity))
