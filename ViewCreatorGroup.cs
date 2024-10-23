@@ -12,5 +12,11 @@ namespace Exerussus.EasyEcsModules.ViewCreator
         {
             GameShare.AddSharedObject(Settings);
         }
+
+        public ViewCreatorGroup SetPreloadAssets(AddressableInfo[] addressableInfo)
+        {
+            Settings.AddressableInfos = addressableInfo;
+            return this;
+        }
     }
 }

@@ -10,11 +10,6 @@ namespace Exerussus.EasyEcsModules.ViewCreator
 {
     public class ViewCreatorPooler : IGroupPooler
     {
-        public void BeforeInitialize(EcsWorld world, GameShare gameShare, GameContext gameContext, string groupName)
-        {
-            Settings = gameShare.GetSharedObject<ViewCreatorSettings>();
-        }
-
         public void Initialize(EcsWorld world)
         {
             _world = world;
@@ -28,7 +23,7 @@ namespace Exerussus.EasyEcsModules.ViewCreator
 
         private EcsWorld _world;
         private readonly AssetPool<AssetViewApi> _assetPooler = new();
-        public  ViewCreatorSettings Settings { get; private set; }
+        [InjectSharedObject] public ViewCreatorSettings Settings { get; private set; }
         public PoolerModule<ViewCreatorData.AssetLoadingMark> AssetLoadingMark { get; private set; }
         public PoolerModule<ViewCreatorData.AssetViewApi> AssetViewApi { get; private set; }
 
