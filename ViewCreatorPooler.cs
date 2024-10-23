@@ -103,5 +103,14 @@ namespace Exerussus.EasyEcsModules.ViewCreator
                 else _assetPooler.Release(api);
             });
         }
+
+        public void ReleaseView(int entity)
+        {
+            if (!AssetViewApi.Has(entity)) return;
+            
+            ref var apiData = ref AssetViewApi.Get(entity);
+            apiData.Value?.Release();
+            AssetViewApi.Del(entity);
+        }
     }
 }
