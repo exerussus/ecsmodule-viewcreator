@@ -5,6 +5,7 @@ using Exerussus._1OrganizerUI.Scripts.Pooling;
 using Exerussus.EasyEcsModules.ViewCreator.MonoBehaviours;
 using Leopotam.EcsLite;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace Exerussus.EasyEcsModules.ViewCreator
 {
@@ -46,12 +47,50 @@ namespace Exerussus.EasyEcsModules.ViewCreator
             });
         }
         
+        public void CreateView(int entity, string assetName, AssetReference assetReference, Vector3 position, Action<AssetViewApi> execute)
+        {
+            AssetLoadingMark.Add(entity);
+            var packedEntity = _world.PackEntity(entity);
+            
+            _assetPooler.GetAndExecute(assetName, assetReference, position, api =>
+            {
+                if (packedEntity.Unpack(_world, out var e))
+                {
+                    ref var newApi = ref AssetViewApi.Add(e);
+                    newApi.Value = api;
+                    AssetLoadingMark.Del(e);
+                    newApi.Value.Release = () => _assetPooler.Release(api);
+                    execute(api);
+                }
+                else _assetPooler.Release(api);
+            });
+        }
+        
         public void CreateEntityView(string assetName, string addressablePath, Vector3 position, Action<AssetViewApi, int> execute)
         {
             var newEntity = _world.NewEntity();
             var packedEntity = _world.PackEntity(newEntity);
             AssetLoadingMark.Add(newEntity);
             _assetPooler.GetAndExecute(assetName, addressablePath, position, api =>
+            {
+                if (packedEntity.Unpack(_world, out var entity))
+                {
+                    ref var newApi = ref AssetViewApi.Add(entity);
+                    newApi.Value = api;
+                    AssetLoadingMark.Del(entity);
+                    newApi.Value.Release = () => _assetPooler.Release(api);
+                    execute(api, newEntity);
+                }
+                else _assetPooler.Release(api);
+            });
+        }
+        
+        public void CreateEntityView(string assetName, AssetReference assetReference, Vector3 position, Action<AssetViewApi, int> execute)
+        {
+            var newEntity = _world.NewEntity();
+            var packedEntity = _world.PackEntity(newEntity);
+            AssetLoadingMark.Add(newEntity);
+            _assetPooler.GetAndExecute(assetName, assetReference, position, api =>
             {
                 if (packedEntity.Unpack(_world, out var entity))
                 {
