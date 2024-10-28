@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Exerussus.EasyEcsModules.ViewCreator
+namespace ECS.Modules.Exerussus.ViewCreator
 {
     [Serializable]
     public class ViewCreatorSettings

@@ -1,11 +1,11 @@
 ﻿using Exerussus._1EasyEcs.Scripts.Core;
 
-namespace Exerussus.EasyEcsModules.ViewCreator
+namespace ECS.Modules.Exerussus.ViewCreator
 {
     public static class ViewCreatorData
     {
         public struct AssetLoadingMark : IEcsComponent
         {  }
-        public struct AssetViewApi : IEcsComponent { public Exerussus.EasyEcsModules.ViewCreator.MonoBehaviours.AssetViewApi Value; }
+        public struct AssetViewApi : IEcsComponent { public MonoBehaviours.AssetViewApi Value; }
     }
 }

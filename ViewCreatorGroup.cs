@@ -2,7 +2,7 @@
 using Exerussus._1EasyEcs.Scripts.Custom;
 using Leopotam.EcsLite;
 
-namespace Exerussus.EasyEcsModules.ViewCreator
+namespace ECS.Modules.Exerussus.ViewCreator
 {
     public class ViewCreatorGroup : EcsGroup<ViewCreatorPooler>
     {

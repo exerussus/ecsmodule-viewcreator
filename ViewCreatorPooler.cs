@@ -1,13 +1,13 @@
 ﻿using System;
+using ECS.Modules.Exerussus.ViewCreator.MonoBehaviours;
 using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1EasyEcs.Scripts.Custom;
 using Exerussus._1OrganizerUI.Scripts.Pooling;
-using Exerussus.EasyEcsModules.ViewCreator.MonoBehaviours;
 using Leopotam.EcsLite;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
-namespace Exerussus.EasyEcsModules.ViewCreator
+namespace ECS.Modules.Exerussus.ViewCreator
 {
     public class ViewCreatorPooler : IGroupPooler
     {

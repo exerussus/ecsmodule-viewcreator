@@ -2,7 +2,7 @@
 using Exerussus._1OrganizerUI.Scripts.Pooling;
 using UnityEngine;
 
-namespace Exerussus.EasyEcsModules.ViewCreator.MonoBehaviours
+namespace ECS.Modules.Exerussus.ViewCreator.MonoBehaviours
 {
     public class AssetViewApi : MonoBehaviour, ILoadAsset
     {
