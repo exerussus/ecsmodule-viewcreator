@@ -1,6 +1,7 @@
 ﻿using Exerussus._1EasyEcs.Scripts.Core;
 using Exerussus._1EasyEcs.Scripts.Custom;
 using Leopotam.EcsLite;
+using UnityEngine.AddressableAssets;
 
 namespace ECS.Modules.Exerussus.ViewCreator
 {
@@ -13,9 +14,15 @@ namespace ECS.Modules.Exerussus.ViewCreator
             GameShare.AddSharedObject(Settings);
         }
 
-        public ViewCreatorGroup SetPreloadAssets(AddressableInfo[] addressableInfo)
+        public ViewCreatorGroup AddPreloadAsset(string name, AssetReference reference)
         {
-            Settings.AddressableInfos = addressableInfo;
+            Settings.ReferencesInfos.Add(new AddressableReferencesInfo { name = name, reference = reference });
+            return this;
+        }
+
+        public ViewCreatorGroup AddPreloadAsset(string name, string path)
+        {
+            Settings.PathsInfos.Add(new AddressablePathsInfo { name = name, path = path });
             return this;
         }
     }

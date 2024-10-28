@@ -16,10 +16,15 @@ namespace ECS.Modules.Exerussus.ViewCreator
             _world = world;
             AssetLoadingMark = new PoolerModule<ViewCreatorData.AssetLoadingMark>(world);
             AssetViewApi = new PoolerModule<ViewCreatorData.AssetViewApi>(world);
-            
-            if (Settings.AddressableInfos == null || Settings.AddressableInfos.Length == 0) return;
 
-            foreach (var addressableInfo in Settings.AddressableInfos) _assetPooler.Initialize(addressableInfo.name, addressableInfo.path);
+            if (Settings.PathsInfos is { Count: > 0 })
+            {
+                foreach (var addressableInfo in Settings.PathsInfos) _assetPooler.Initialize(addressableInfo.name, addressableInfo.path);
+            }
+            if (Settings.ReferencesInfos is { Count: > 0 })
+            {
+                foreach (var addressableInfo in Settings.ReferencesInfos) _assetPooler.Initialize(addressableInfo.name, addressableInfo.reference);
+            }
         }
 
         private EcsWorld _world;
