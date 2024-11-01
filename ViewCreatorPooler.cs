@@ -11,7 +11,7 @@ namespace ECS.Modules.Exerussus.ViewCreator
 {
     public class ViewCreatorPooler : IGroupPooler
     {
-        public void Initialize(EcsWorld world)
+        public virtual void Initialize(EcsWorld world)
         {
             _world = world;
             AssetLoadingMark = new PoolerModule<ViewCreatorData.AssetLoadingMark>(world);
